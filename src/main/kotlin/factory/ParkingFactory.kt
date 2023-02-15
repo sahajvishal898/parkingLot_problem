@@ -1,5 +1,6 @@
 package factory
 
+import fees.*
 import parkingLocation.AirportParking
 import parkingLocation.MallParking
 import parkingLocation.ParkingArea
@@ -27,6 +28,34 @@ object ParkingFactory {
         if(parkingLocation=="Airport")
             return AirportParking(allParkingLot)
         return null
+    }
+
+    fun getAllParkingLotForParking(parkingArea:String,motorcyclesParkingCnt: Int, carParkingCount: Int, busParkingCount: Int): MutableList<VehicleParking> {
+
+        val allParkingLots = mutableListOf<VehicleParking>()
+
+        if(parkingArea=="Mall"){
+            val motorcyclesParking = MotorcyclesParking(motorcyclesParkingCnt, MotorcycleFeeInMall())
+            val carParking = CarsParking(carParkingCount, CarParkingFeeInMall())
+            val busParking = BusParking(busParkingCount, BusParkingFeeInMall())
+            allParkingLots.add(motorcyclesParking)
+            allParkingLots.add(carParking)
+            allParkingLots.add(busParking)
+
+        }
+        if(parkingArea=="Stadium"){
+            val motorcyclesParking = MotorcyclesParking(motorcyclesParkingCnt, MotorcycleFeeInStadium())
+            val carParking = CarsParking(carParkingCount, CarParkingFeeInStadium())
+            allParkingLots.add(motorcyclesParking)
+            allParkingLots.add(carParking)
+        }
+        if(parkingArea=="Airport"){
+            val motorcyclesParking = MotorcyclesParking(motorcyclesParkingCnt, MotorcycleFeeInAirport())
+            val carParking = CarsParking(carParkingCount, CarParkingFeeInAirport())
+            allParkingLots.add(motorcyclesParking)
+            allParkingLots.add(carParking)
+        }
+        return allParkingLots
     }
 
     fun getVehicleType(vehicleType:String): VehicleType? {

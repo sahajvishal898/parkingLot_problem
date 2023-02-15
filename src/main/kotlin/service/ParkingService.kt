@@ -1,9 +1,6 @@
 package service
 
 import factory.ParkingFactory
-import fees.BusParkingFeeInMall
-import fees.CarParkingFeeInMall
-import fees.MotorcycleParkingFeeInMall
 import invoice.Receipt
 import invoice.Ticket
 import parkingLocation.ParkingArea
@@ -45,17 +42,9 @@ object ParkingService {
         parkingArea: String, motorcyclesParkingCnt: Int,
         carParkingCount: Int, busParkingCount: Int
     ): ParkingArea? {
-
-
-        val motorcyclesParking = MotorcyclesParking(motorcyclesParkingCnt,MotorcycleParkingFeeInMall())
-        val carParking = CarsParking(carParkingCount,CarParkingFeeInMall())
-        val busParking = BusParking(busParkingCount,BusParkingFeeInMall())
-
-        val allParkingLots = mutableListOf<VehicleParking>()
-        allParkingLots.add(motorcyclesParking)
-        allParkingLots.add(carParking)
-        allParkingLots.add(busParking)
+        val allParkingLots = ParkingFactory.getAllParkingLotForParking(parkingArea,motorcyclesParkingCnt, carParkingCount, busParkingCount)
 
         return ParkingFactory.getParkingForLocation(parkingArea,allParkingLots)
     }
+
 }

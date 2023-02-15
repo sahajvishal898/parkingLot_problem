@@ -62,7 +62,7 @@ class parkingTest {
     }
 
     @Test
-    fun `check if proper receipt is generated when motorcycle unpark after one hour`() {
+    fun `check if proper receipt is generated when motorcycle unpark after one hour from Mall`() {
         val parking= ParkingService.createParking("Mall",10,20,10) ?: return
 
         val ticket1=ParkingService.parkVehicle(parking,"Motorcycle")
@@ -74,6 +74,21 @@ class parkingTest {
         assertEquals(1,ticket1.spotNo)
         assertEquals(1,receipt1!!.receiptNo)
         assertEquals(10,receipt1.fee)
+    }
+
+    @Test
+    fun `check if proper receipt is generated when car unpark after one hour`() {
+        val parking= ParkingService.createParking("Mall",10,20,10) ?: return
+
+        val ticket1=ParkingService.parkVehicle(parking,"Car")
+        val receipt1=ParkingService.unParkVehicle(parking,ticket1!!.ticketNo, LocalDateTime.now().plusHours(1))
+
+        assertNotNull(ticket1)
+        assertNotNull(receipt1)
+        assertEquals(1,ticket1.ticketNo)
+        assertEquals(1,ticket1.spotNo)
+        assertEquals(1,receipt1!!.receiptNo)
+        assertEquals(20,receipt1.fee)
     }
 
     @Test
@@ -93,6 +108,26 @@ class parkingTest {
         assertEquals(2,ticket2.spotNo)
         assertEquals(1,receipt1!!.receiptNo)
     }
+
+
+
+    @Test
+    fun `check if proper receipt is generated when motorcycle unpark after 13 hour from Stadium`() {
+        val parking= ParkingService.createParking("Stadium",10,20,10) ?: return
+
+        val ticket1=ParkingService.parkVehicle(parking,"Motorcycle")
+        val receipt1=ParkingService.unParkVehicle(parking,ticket1!!.ticketNo, LocalDateTime.now().plusHours(13))
+
+        assertNotNull(ticket1)
+        assertNotNull(receipt1)
+        assertEquals(1,ticket1.ticketNo)
+        assertEquals(1,ticket1.spotNo)
+        assertEquals(1,receipt1!!.receiptNo)
+        assertEquals(290,receipt1.fee)
+    }
+
+
+
 
 
 
