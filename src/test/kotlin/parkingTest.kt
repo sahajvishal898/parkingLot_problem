@@ -1,5 +1,4 @@
 import factory.ParkingFactory
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
@@ -66,7 +65,7 @@ class parkingTest {
         val parking= ParkingService.createParking("Mall",10,20,10) ?: return
 
         val ticket1=ParkingService.parkVehicle(parking,"Motorcycle")
-        val receipt1=ParkingService.unParkVehicle(parking,ticket1!!.ticketNo, LocalDateTime.now().plusHours(1))
+        val receipt1=ParkingService.unParkVehicle(ticket1!!.ticketNo, LocalDateTime.now().plusHours(1))
 
         assertNotNull(ticket1)
         assertNotNull(receipt1)
@@ -81,7 +80,7 @@ class parkingTest {
         val parking= ParkingService.createParking("Mall",10,20,10) ?: return
 
         val ticket1=ParkingService.parkVehicle(parking,"Car")
-        val receipt1=ParkingService.unParkVehicle(parking,ticket1!!.ticketNo, LocalDateTime.now().plusHours(1))
+        val receipt1=ParkingService.unParkVehicle(ticket1!!.ticketNo, LocalDateTime.now().plusHours(1))
 
         assertNotNull(ticket1)
         assertNotNull(receipt1)
@@ -97,7 +96,7 @@ class parkingTest {
 
         val ticket1=ParkingService.parkVehicle(parking,"Motorcycle")
         val ticket2=ParkingService.parkVehicle(parking,"Motorcycle")
-        val receipt1=ParkingService.unParkVehicle(parking,ticket1!!.ticketNo)
+        val receipt1=ParkingService.unParkVehicle(ticket1!!.ticketNo)
 
         assertNotNull(ticket1)
         assertNotNull(ticket2)
@@ -116,7 +115,7 @@ class parkingTest {
         val parking= ParkingService.createParking("Stadium",10,20,10) ?: return
 
         val ticket1=ParkingService.parkVehicle(parking,"Motorcycle")
-        val receipt1=ParkingService.unParkVehicle(parking,ticket1!!.ticketNo, LocalDateTime.now().plusHours(13))
+        val receipt1=ParkingService.unParkVehicle(ticket1!!.ticketNo, LocalDateTime.now().plusHours(13))
 
         assertNotNull(ticket1)
         assertNotNull(receipt1)
