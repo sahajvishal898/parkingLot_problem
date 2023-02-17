@@ -1,3 +1,3 @@
 package exception
 
-class CustomException(S:String) : Throwable(S)
+class CustomException(s: String) : Throwable(s)

@@ -11,11 +11,12 @@ import java.time.LocalDateTime
 
 object ParkingService {
 
-    fun parkVehicle(parkingArea: ParkingArea, vehicle: String): Ticket? {
+    fun parkVehicle(parkingArea: ParkingArea, vehicle: String): Ticket {
 
 
         val vehicleType = ParkingFactory.getVehicleType(vehicle) ?: throw CustomException("No vehicle of this type")
-        val parkingSpotForVehicle = parkingArea.getParkingForVehicle(vehicleType) ?: throw CustomException("No parking for this type of vehicle")
+        val parkingSpotForVehicle = parkingArea.getParkingForVehicle(vehicleType)
+            ?: throw CustomException("No parking for this type of vehicle")
         val parkingSpotNumber = parkingSpotForVehicle.getParkingSpot() ?: throw CustomException("No spot available ")
 
         val ticket = TicketService.generateTicket(parkingSpotForVehicle, parkingSpotNumber)
@@ -26,7 +27,7 @@ object ParkingService {
     }
 
 
-    fun unParkVehicle(ticketNo: Int, dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt? {
+    fun unParkVehicle(ticketNo: Int, dateOfUnparking: LocalDateTime = LocalDateTime.now()): Receipt {
 
         val ticket = TicketRepo.getTicket(ticketNo) ?: throw Exception("No ticket with this no")
         val vehicleParking = ticket.parkingSpotForVehicle

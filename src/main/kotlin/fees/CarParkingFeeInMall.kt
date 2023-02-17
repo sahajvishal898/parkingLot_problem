@@ -1,6 +1,6 @@
 package fees
 
-class CarParkingFeeInMall:ParkingFees() {
+class CarParkingFeeInMall : ParkingFees() {
     override fun getTotalFees(parkingDurationInHours: Int): Int {
 
         val feesPerHour = 20

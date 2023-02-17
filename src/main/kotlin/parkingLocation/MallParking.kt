@@ -2,7 +2,7 @@ package parkingLocation
 
 import parkingType.*
 
-class MallParking(parkingLot:MutableList<VehicleParking>): ParkingArea(parkingLot){
+class MallParking(parkingLot: MutableList<VehicleParking>) : ParkingArea(parkingLot) {
 
 
 }

@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 
 object ReceiptService {
 
-    fun generateReceipt(vehicleParking: VehicleParking, ticket: Ticket,dateOfUnparking:LocalDateTime): Receipt {
+    fun generateReceipt(vehicleParking: VehicleParking, ticket: Ticket, dateOfUnparking: LocalDateTime): Receipt {
 
-        val durationInHours = Duration.between(ticket.date,dateOfUnparking).toHours().toInt()
+        val durationInHours = Duration.between(ticket.date, dateOfUnparking).toHours().toInt()
 
         val fee = vehicleParking.parkingFees.getTotalFees(durationInHours)
 

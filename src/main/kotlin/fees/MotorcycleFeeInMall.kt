@@ -1,6 +1,6 @@
 package fees
 
-class MotorcycleFeeInMall:ParkingFees() {
+class MotorcycleFeeInMall : ParkingFees() {
 
     override fun getTotalFees(parkingDurationInHours: Int): Int {
 
